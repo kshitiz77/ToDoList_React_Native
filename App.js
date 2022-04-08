@@ -6,13 +6,17 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import ToDoForm from './src/screens/ToDoForm';
 import styles from './src/styles/styles';
 import Routes from './src/navigation/Routes';
+import store from './src/redux/store';
+import { Provider } from 'react-redux';
 
 const App = () => {
 
   return (
-      <SafeAreaProvider >
-      <Routes />
-      </SafeAreaProvider>
+    <SafeAreaProvider >
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </SafeAreaProvider>
   );
 };
 

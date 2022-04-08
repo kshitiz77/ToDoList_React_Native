@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import styles from '../styles/styles';
 import navigationString from '../navigation/navigationString';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/actions/auth'
 
 const LoginScreen = ({naigation}) => {
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -26,7 +29,7 @@ const LoginScreen = ({naigation}) => {
             console.log('Please Enter Correct Password');
         } else {
             console.log(email, password)
-            naigation.navigate(navigationString.HOME)
+            dispatch(login())
         }
     }
     return (
@@ -53,7 +56,7 @@ const LoginScreen = ({naigation}) => {
                     style={styles.btnContainer}
                     onPress={handleSubmitBtn}
                 >
-                    <Text style={styles.btn}>Submit</Text>
+                    <Text style={styles.btn}>Login</Text>
                 </TouchableOpacity>
             </View>
         </View>
