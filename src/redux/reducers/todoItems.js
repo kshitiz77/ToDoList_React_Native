@@ -6,6 +6,12 @@ const initialState = {
 
 const todoItemsFun = (state = initialState, action) =>{
     switch(action.type){
-        case
+        case types.CREATE_TODOITEMS : return {
+            ...state,
+            todoItems : [...state.todoItems, action.item]
+        }
+        default : return state;
     }
 }
+
+export default todoItemsFun;

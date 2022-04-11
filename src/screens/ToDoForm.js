@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 'react-native'
 import styles from '../styles/styles'
+import { useDispatch } from 'react-redux'
+import types from '../redux/types'
+import navigationString from '../navigation/navigationString'
 
-const ToDoForm = () => {
+const ToDoForm = ({navigation}) => {
 const [name, setName] = useState('')
 const [address, setAddress] = useState('')
 const [phoneNumber, setPhoneNumber] =  useState('')
 const [age, setAge] = useState('')
 const [rollNumber, setRollNumber] = useState('')
+
+const dispatch = useDispatch()
 
 const handleName = (name) =>{
   setName(() => name)
@@ -28,9 +33,21 @@ const handleAge = (age) =>{
 const handleRollNumber =(rollNumber) =>{
   setRollNumber(() => rollNumber)
 }
+
 const handleSubmitBtn = () => {
-  console.log(name, address, phoneNumber, age, rollNumber)
+  dispatch({
+    type : types.CREATE_TODOITEMS,
+    item : {
+      name : name,
+      address : address,
+      phoneNumber : phoneNumber,
+      age : age,
+      rollNumber : rollNumber
+    }
+  })
+  navigation.navigate(navigationString.HOME)
   }
+  
   return (
     <View style={styles.screenContainer}>
       <TextInput

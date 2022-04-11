@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   todoListText: {
     color: '#fff',
     fontSize: 20,
-    marginVertical: 5,
+    marginVertical: 8,
     fontWeight: '500'
   },
   addMoreTaskBtnContainer: {
@@ -74,6 +74,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 30,
   },
+  todoList:{
+    margin: 10,
+    padding : 10,
+    borderRadius:8,
+    backgroundColor: '#696969'
+  }
 })
 
 export default styles
