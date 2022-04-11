@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginScreen from '../screens/LoginScreen'
+import LoginScreen from '../Screens/LoginScreen'
 import navigationString from './navigationString'
 
 const AuthStack = (Stack) => {

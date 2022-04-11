@@ -22,13 +22,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: width / 1.5
   },
+  inputFieldError:{
+    color:'red'
+  },
   btnContainer: {
     backgroundColor: '#0058ab',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 8,
     borderRadius: 8,
-    marginTop: 10
   },
   btn: {
     color: '#fff',
@@ -47,7 +49,11 @@ const styles = StyleSheet.create({
   //  home Screen //
   todoListContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
+    width:width/1.1,
+    borderRadius:8,
+    backgroundColor: '#696969',
+    flexDirection:'row',
+    margin:5,
   },
   todoListText: {
     color: '#fff',
@@ -75,10 +81,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   todoList:{
-    margin: 10,
-    padding : 10,
-    borderRadius:8,
-    backgroundColor: '#696969'
+width:width/1.5
+  },
+  deleteImg:{
+    width: 50,
+    height:50,
+    marginVertical:10
   }
 })
 

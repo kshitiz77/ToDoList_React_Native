@@ -7,3 +7,7 @@ export const createToDoItems = () =>{
 export const deleteToDoItems = () =>{
     return types.DELETE_TODOITEMS
 }
+
+export const updateToDoItems = () =>{
+    return types.UPDATE_TODOITEMS
+}

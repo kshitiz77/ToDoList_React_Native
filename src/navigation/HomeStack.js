@@ -1,6 +1,6 @@
 import React from 'react'
-import HomeScreen from '../screens/HomeScreen'
-import ToDoForm from '../screens/ToDoForm'
+import HomeScreen from '../Screens/HomeScreen'
+import ToDoForm from '../Screens/ToDoForm'
 import navigationString from './navigationString'
 import { createStackNavigator } from '@react-navigation/stack'
 
