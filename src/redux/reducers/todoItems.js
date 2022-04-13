@@ -1,12 +1,14 @@
 import types from "../types";
-
+import { setToDoDetails } from "../../../utils/utils";
 const initialState = {
     todoItems: [],
 }
 
 const todoItemsFun = (state = initialState, action) => {
     switch (action.type) {
-        case types.CREATE_TODOITEMS: return {
+        case types.CREATE_TODOITEMS: 
+        setToDoDetails(action.item)
+        return {
             ...state,
             todoItems: [...state.todoItems, action.item]
         }
