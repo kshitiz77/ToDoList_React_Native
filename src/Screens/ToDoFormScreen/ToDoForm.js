@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import commonStyles from '../../styles/commonStyles'
 import { useDispatch } from 'react-redux'
 import types from '../../redux/types'
@@ -58,7 +58,22 @@ const ToDoForm = ({ navigation, route }) => {
   }
 
   const handleSubmitBtn = () => {
-    if (params.submitType === 'create') {
+    if (name === "" || name === undefined) {
+      setNameError(true)
+    } else if (address === "" || address === undefined) {
+      setNameError(false)
+      setAddressError(true)
+    } else if (phoneNumber === "" || phoneNumber === undefined) {
+      setAddressError(false)
+      setPhoneNumberError(true)
+    } else if (age === "" || age === undefined) {
+      setPhoneNumberError(false)
+      setAgeError(true)
+    } else if (rollNumber === "" || rollNumber === undefined) {
+      setAgeError(false)
+      setRollNumberError(true)
+    } else if (params?.submitType === "create") {
+      setRollNumberError(false)
       dispatch({
         type: types.CREATE_TODOITEMS,
         item: {
@@ -71,7 +86,7 @@ const ToDoForm = ({ navigation, route }) => {
         }
       })
       navigation.navigate(navigationString.HOME)
-    } else if (params.submitType === 'userEdit') {
+    } else if(params?.submitType === "userEdit"){
       dispatch({
         type: types.UPDATE_TODOITEMS,
         item: {
@@ -83,73 +98,72 @@ const ToDoForm = ({ navigation, route }) => {
           rollNumber: rollNumber,
         }
       })
-      console.log(params.submitType)
+      console.log(params?.submitType)
       navigation.navigate(navigationString.HOME)
     }
   }
-
   return (
     <View style={commonStyles.screenContainer}>
       <ScrollView >
 
         <View style={styles.todoFormContainer}>
-      <CommonTextInput
-        placeHolder={'Enter Your Name'}
-        value={name}
-        errorText="Please Enter Your Name"
-        error={nameError}
-        handleFunction={handleName} />
+          <CommonTextInput
+            placeHolder={'Enter Your Name'}
+            value={name}
+            errorText="Please Enter Your Name"
+            error={nameError}
+            handleFunction={handleName} />
 
-      <CommonTextInput
-        placeHolder={"Enter Your Address"}
-        value={address}
-        errorText="Please Enter Your Address"
-        error={addressError}
-        handleFunction={handleAddress} />
+          <CommonTextInput
+            placeHolder={"Enter Your Address"}
+            value={address}
+            errorText="Please Enter Your Address"
+            error={addressError}
+            handleFunction={handleAddress} />
 
-      <CommonTextInput
-        placeHolder={"Enter Your Phone"}
-        value={phoneNumber}
-        errorText="Please Enter Your Phone"
-        error={phoneNumberError}
-        handleFunction={handlePhoneNumber} />
+          <CommonTextInput
+            placeHolder={"Enter Your Phone"}
+            value={phoneNumber}
+            errorText="Please Enter Your Phone"
+            error={phoneNumberError}
+            handleFunction={handlePhoneNumber} />
 
-      <CommonTextInput
-        placeHolder={"Enter Your Age"}
-        value={age}
-        errorText="Please Enter Your Age"
-        error={ageError}
-        handleFunction={handleAge} />
+          <CommonTextInput
+            placeHolder={"Enter Your Age"}
+            value={age}
+            errorText="Please Enter Your Age"
+            error={ageError}
+            handleFunction={handleAge} />
 
-      <CommonTextInput
-        placeHolder={"Enter Your Roll Number"}
-        value={rollNumber}
-        errorText="Please Enter Your Roll Number"
-        error={rollNumberError}
-        handleFunction={handleRollNumber} />
-      {(() => {
-        if (params.submitType === 'create') {
-          return (
-            <TouchableOpacity
-              style={commonStyles.btnContainer}
-              onPress={handleSubmitBtn}
-            >
-              <Text style={commonStyles.btn}>Submit</Text>
-            </TouchableOpacity>
-          );
-        }
-        return (
-          <TouchableOpacity
-            style={commonStyles.btnContainer}
-            onPress={handleSubmitBtn}
-          >
-            <Text style={commonStyles.btn}>Update</Text>
-          </TouchableOpacity>
-        );
-      })()}
+          <CommonTextInput
+            placeHolder={"Enter Your Roll Number"}
+            value={rollNumber}
+            errorText="Please Enter Your Roll Number"
+            error={rollNumberError}
+            handleFunction={handleRollNumber} />
+          {(() => {
+            if (params.submitType === 'create') {
+              return (
+                <TouchableOpacity
+                  style={commonStyles.btnContainer}
+                  onPress={handleSubmitBtn}
+                >
+                  <Text style={commonStyles.btn}>Submit</Text>
+                </TouchableOpacity>
+              );
+            }
+            return (
+              <TouchableOpacity
+                style={commonStyles.btnContainer}
+                onPress={handleSubmitBtn}
+              >
+                <Text style={commonStyles.btn}>Update</Text>
+              </TouchableOpacity>
+            );
+          })()}
 
-</View>
-    </ScrollView>
+        </View>
+      </ScrollView>
     </View>
   )
 }

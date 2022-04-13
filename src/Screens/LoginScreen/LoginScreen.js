@@ -11,6 +11,8 @@ const LoginScreen = ({naigation}) => {
     const dispatch = useDispatch()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
 
     const handleEmail = (email) => {
         setEmail(() => email)
@@ -21,18 +23,20 @@ const LoginScreen = ({naigation}) => {
     }
 
     const handleSubmitBtn = () => {
-        // if (email === "") {
-        //     console.log('Please Enter Your Email Address');
-        // } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
-        //     console.log('Please Enter Your Correct Email Address');
-        // } else if (password === "") {
-        //     console.log('Please Enter Your Password');
-        // } else if (password.length < 6) {
-        //     console.log('Please Enter Correct Password');
-        // } else {
+        if (email === "") {
+            setEmailError(true)
+        } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+            setEmailError(true)
+        } else if (password === "") {
+            setEmailError(false)
+            setPasswordError(true)
+        } else if (password.length < 6) {
+            setPasswordError(true)
+        } else {
+            setPasswordError(false)
             console.log(email, password)
             dispatch(login())
-        // }
+        }
     }
     return (
         <View style={commonStyles.screenContainer}>
@@ -44,7 +48,9 @@ const LoginScreen = ({naigation}) => {
                 handleFunction={(name) => handleEmail(name)}
                 keyboardType="email-address"
                 />
-
+                {
+                    emailError ? <Text style={commonStyles.inputFieldError}>Please Enter Your Correct Email</Text> : null
+                }
 
                 <CommonTextInput
                 placeHolder='Enter Your Password'
@@ -53,7 +59,10 @@ const LoginScreen = ({naigation}) => {
                 keyboardType="email-address"
                 secureTextEntry={true}
                 />
-
+                
+                {
+                    passwordError ? <Text style={commonStyles.inputFieldError}>Please Enter Your Correct Password</Text> : null
+                }
                 <TouchableOpacity
                     style={commonStyles.btnContainer}
                     onPress={handleSubmitBtn}
