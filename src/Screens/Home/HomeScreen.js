@@ -1,21 +1,24 @@
 import React from 'react'
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native'
-import styles from '../styles/styles';
-import navigationString from '../navigation/navigationString';
+import styles from './styles';
+import commonStyles from '../../styles/commonStyles';
+import navigationString from '../../navigation/navigationString';
 import { useSelector } from 'react-redux';
-import todoItemsFun from '../redux/reducers/todoItems';
+import todoItemsFun from '../../redux/reducers/todoItems';
 import { useDispatch } from 'react-redux';
-import types from '../redux/types';
+import types from '../../redux/types';
 
-const deleteImage = require('../assets/images/delete.png')
-const editImage =  require('../assets/images/editing.png')
+const deleteImage = require('../../assets/images/delete.png')
+const editImage =  require('../../assets/images/editing.png')
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch()
   const todoListDetails = useSelector((state) => state.todoItemsFun.todoItems)
 
   const handleSubmitBtn = () => {
-    navigation.navigate(navigationString.ToDoForm)
+    navigation.navigate(navigationString.ToDoForm, {
+      submitType: "create"
+    })
   }
   const handleRemove = (e, userId) => {
     console.log(userId)
@@ -27,11 +30,14 @@ const HomeScreen = ({ navigation }) => {
 
   const handleEditDetails = (e, userId) => {
     console.log(userId)
-    navigation.navigate(navigationString.ToDoForm, userId);
+    navigation.navigate(navigationString.ToDoForm,{
+      userId:userId,
+      submitType:'userEdit'
+    });
   }
 
   return (
-    <View style={styles.screenContainer}>
+    <View style={commonStyles.screenContainer}>
       
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
       {todoListDetails.length > 0 ?
@@ -62,10 +68,10 @@ const HomeScreen = ({ navigation }) => {
       }
         
         {todoListDetails.length === 0 ? <TouchableOpacity
-          style={styles.btnContainer}
+          style={commonStyles.btnContainer}
           onPress={handleSubmitBtn}
         >
-          <Text style={styles.btn}>Add Task</Text>
+          <Text style={commonStyles.btn}>Add Task</Text>
         </TouchableOpacity> : null
         }
       </View>

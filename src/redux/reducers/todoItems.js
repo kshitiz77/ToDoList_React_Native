@@ -30,9 +30,13 @@ const todoItemsFun = (state = initialState, action) =>{
         case types.UPDATE_TODOITEMS :
             let updateArr = [...state.todoItems];
 
-            let updateUserId = state.todoItems.find((todoItem) => todoItem.userId === action.userId);
+            let updateUserId = state.todoItems.findIndex((todoItem) => todoItem.userId === action.item.userId);
 
-            // console.log(updateUserId)
+            updateArr[updateUserId] = action.item
+            return {
+                ...state,
+                todoItems: updateArr
+            }
         
         default : return state;
     }
