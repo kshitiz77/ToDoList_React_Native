@@ -1,44 +1,45 @@
 import types from "../types";
 
 const initialState = {
-    todoItems : [],
+    todoItems: [],
 }
 
-const todoItemsFun = (state = initialState, action) =>{
-    switch(action.type){
-        case types.CREATE_TODOITEMS : return {
+const todoItemsFun = (state = initialState, action) => {
+    switch (action.type) {
+        case types.CREATE_TODOITEMS: return {
             ...state,
-            todoItems : [...state.todoItems, action.item]
+            todoItems: [...state.todoItems, action.item]
         }
-        case types.DELETE_TODOITEMS : 
-            let newArr = [ ...state.todoItems];
-            
+        case types.DELETE_TODOITEMS:
+            let newArr = [...state.todoItems];
+
             const index = state.todoItems.findIndex((todoItem) => todoItem.userId === action.userId);
 
             console.log(index)
-            if(index >= 0){
+            if (index >= 0) {
                 // item exists in todoItems, remove it...
                 newArr.splice(index, 1);
-            }else{
+            } else {
                 console.warn(
                     `Can't remove product (id: ${action.userId} ) as its not in cart.`
                 )
             }
-            return { ...state,
+            return {
+                ...state,
                 todoItems: newArr,
             }
-        case types.UPDATE_TODOITEMS :
+        case types.UPDATE_TODOITEMS:
             let updateArr = [...state.todoItems];
 
-            let updateUserId = state.todoItems.findIndex((todoItem) => todoItem.userId === action.item.userId);
+            let updateUserIndex = state.todoItems.findIndex((todoItem) => todoItem.userId === action.item.userId);
 
-            updateArr[updateUserId] = action.item
+            updateArr[updateUserIndex] = action.item
             return {
                 ...state,
                 todoItems: updateArr
             }
-        
-        default : return state;
+
+        default: return state;
     }
 }
 

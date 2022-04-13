@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text,TouchableOpacity, Image, ScrollView } from 'react-native'
 import styles from './styles';
 import commonStyles from '../../styles/commonStyles';
 import navigationString from '../../navigation/navigationString';
@@ -7,9 +7,7 @@ import { useSelector } from 'react-redux';
 import todoItemsFun from '../../redux/reducers/todoItems';
 import { useDispatch } from 'react-redux';
 import types from '../../redux/types';
-
-const deleteImage = require('../../assets/images/delete.png')
-const editImage =  require('../../assets/images/editing.png')
+import imagesPath from '../../constants/imagesPath'
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch()
@@ -20,18 +18,23 @@ const HomeScreen = ({ navigation }) => {
       submitType: "create"
     })
   }
-  const handleRemove = (e, userId) => {
-    console.log(userId)
+  const handleRemove = (e, items) => {
+    console.log(items.userId)
     dispatch({
       type: types.DELETE_TODOITEMS,
-      userId: userId
+      userId: items.userId
     })
   }
 
-  const handleEditDetails = (e, userId) => {
-    console.log(userId)
+  const handleEditDetails = (e, items) => {
+    console.log(items.userId)
     navigation.navigate(navigationString.ToDoForm,{
-      userId:userId,
+      userId:items.userId,
+      name:items.name,
+      address:items.address,
+      phoneNumber:items.address,
+      age:items.age,
+      rollNumber:items.rollNumber,
       submitType:'userEdit'
     });
   }
@@ -54,11 +57,11 @@ const HomeScreen = ({ navigation }) => {
             <View>
 
             
-            <TouchableOpacity onPress={(e) => handleRemove(e, items.userId)}>
-              <Image source={deleteImage} style={styles.deleteImg} />
+            <TouchableOpacity onPress={(e) => handleRemove(e, items)}>
+              <Image source={imagesPath.deleteIcon} style={styles.cardDetailsIcons} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={(e) => handleEditDetails(e, items.userId)}>
-              <Image source={editImage} style={styles.deleteImg} resizeMode='contain' />
+            <TouchableOpacity onPress={(e) => handleEditDetails(e, items)}>
+              <Image source={imagesPath.editIcon} style={styles.cardDetailsIcons} resizeMode='contain' />
             </TouchableOpacity>
             </View>
           </View> 

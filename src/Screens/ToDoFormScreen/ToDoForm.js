@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, TouchableOpacity, ScrollView} from 'react-native'
 import commonStyles from '../../styles/commonStyles'
 import { useDispatch } from 'react-redux'
 import types from '../../redux/types'
 import navigationString from '../../navigation/navigationString'
 import CommonTextInput from '../../component/common/CommonTextInput'
+import styles from './styles'
 
 const ToDoForm = ({ navigation, route }) => {
   const [name, setName] = useState('')
@@ -22,6 +23,17 @@ const ToDoForm = ({ navigation, route }) => {
   const userId = Math.floor(Math.random() * 10000)
 
   const params = route?.params
+
+
+  useEffect(() => {
+    if (params) {
+      setName(params?.name)
+      setAddress(params?.address)
+      setPhoneNumber(params?.phoneNumber)
+      setAge(params?.age)
+      setRollNumber(params?.rollNumber)
+    }
+  }, [params])
 
   const dispatch = useDispatch()
 
@@ -78,37 +90,39 @@ const ToDoForm = ({ navigation, route }) => {
 
   return (
     <View style={commonStyles.screenContainer}>
+      <ScrollView >
 
+        <View style={styles.todoFormContainer}>
       <CommonTextInput
-        placeHolder="Enter Your Name"
+        placeHolder={'Enter Your Name'}
         value={name}
         errorText="Please Enter Your Name"
         error={nameError}
         handleFunction={handleName} />
 
       <CommonTextInput
-        placeHolder="Enter Your Address"
+        placeHolder={"Enter Your Address"}
         value={address}
         errorText="Please Enter Your Address"
         error={addressError}
         handleFunction={handleAddress} />
 
       <CommonTextInput
-        placeHolder="Enter Your Phone Number"
+        placeHolder={"Enter Your Phone"}
         value={phoneNumber}
         errorText="Please Enter Your Phone"
         error={phoneNumberError}
         handleFunction={handlePhoneNumber} />
 
       <CommonTextInput
-        placeHolder="Enter Your Age"
+        placeHolder={"Enter Your Age"}
         value={age}
         errorText="Please Enter Your Age"
         error={ageError}
         handleFunction={handleAge} />
 
       <CommonTextInput
-        placeHolder="Enter Your Roll Number"
+        placeHolder={"Enter Your Roll Number"}
         value={rollNumber}
         errorText="Please Enter Your Roll Number"
         error={rollNumberError}
@@ -126,15 +140,16 @@ const ToDoForm = ({ navigation, route }) => {
         }
         return (
           <TouchableOpacity
-        style={commonStyles.btnContainer}
-        onPress={handleSubmitBtn}
-      >
-        <Text style={commonStyles.btn}>Update</Text>
-      </TouchableOpacity>
+            style={commonStyles.btnContainer}
+            onPress={handleSubmitBtn}
+          >
+            <Text style={commonStyles.btn}>Update</Text>
+          </TouchableOpacity>
         );
       })()}
 
-      
+</View>
+    </ScrollView>
     </View>
   )
 }

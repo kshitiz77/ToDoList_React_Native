@@ -1,5 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
+import colors from '../../styles/colors';
+
 const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
@@ -7,12 +9,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width:width/1.1,
         borderRadius:8,
-        backgroundColor: '#696969',
+        backgroundColor: colors.orangeB,
         flexDirection:'row',
         margin:5,
       },
       todoListText: {
-        color: '#fff',
+        color: colors.white,
         fontSize: 20,
         marginVertical: 8,
         fontWeight: '500'
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
         bottom: 0,
       },
       addMoreTaskBtn: {
-        backgroundColor: '#0058ab',
+        backgroundColor: colors.blue,
         alignItems: 'center',
         borderRadius: 50,
         marginBottom: 20,
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
       todoList:{
     width:width/1.5
       },
-      deleteImg:{
+      cardDetailsIcons:{
         width: 50,
         height:50,
         marginVertical:10

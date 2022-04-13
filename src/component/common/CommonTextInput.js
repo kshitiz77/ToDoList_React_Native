@@ -1,21 +1,24 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, Dimensions, TextInput } from 'react-native'
 import commonStyles from '../../styles/commonStyles'
 
 const CommonTextInput = (props) => {
   return (
     <>
-    <TextInput
-        placeholder={props.placeHolder}
-        style={commonStyles.inputField}
-        value={props.value}
-        onChangeText={props.handleFunction}
-        secureTextEntry={props.secureTextEntry}
-      />
+      <View style={commonStyles?.textInputArea}>
+        <TextInput
+          placeholder={props?.placeHolder}
+          style={commonStyles.inputField}
+          value={props?.value}
+          onChangeText={props?.handleFunction}
+          secureTextEntry={props?.secureTextEntry}
+        />
+      </View>
+
       {
-        props.error ? 
-        <Text style={commonStyles.inputFieldError}>{props.errorText}</Text>
-        : null
+        props?.error ?
+          <Text style={commonStyles?.inputFieldError}>{props?.errorText}</Text>
+          : null
       }
     </>
   )

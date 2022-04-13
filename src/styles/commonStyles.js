@@ -1,36 +1,37 @@
 import { Dimensions, StyleSheet } from 'react-native'
-
+import colors from './colors';
 const width = Dimensions.get('window').width;
 
 const commonStyles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    backgroundColor:'#000',
-    width: width,
+    backgroundColor:colors.black,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textInputArea:{
+    width:width/1.5
+  },
   inputField: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderRadius: 8,
     fontSize: 16,
     fontWeight: '600',
     marginVertical: 8,
-    textAlign: 'center',
-    width: width / 1.5
+    textAlign:'left',
   },
   inputFieldError:{
-    color:'red'
+    color:colors.redColor
   },
   btnContainer: {
-    backgroundColor: '#0058ab',
+    backgroundColor: colors.blue,
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 8,
     borderRadius: 8,
   },
   btn: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '600',
     width: width / 1.5,
