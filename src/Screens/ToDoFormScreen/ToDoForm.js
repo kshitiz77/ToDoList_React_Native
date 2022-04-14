@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import commonStyles from '../../styles/commonStyles'
-import { useDispatch } from 'react-redux'
+import dispatch from '../../redux/store'
 import types from '../../redux/types'
 import navigationString from '../../navigation/navigationString'
 import CommonTextInput from '../../component/common/CommonTextInput'
 import styles from './styles'
+import actions from '../../redux/actions'
 
 const ToDoForm = ({ navigation, route }) => {
   const [name, setName] = useState('')
@@ -24,6 +25,23 @@ const ToDoForm = ({ navigation, route }) => {
 
   const params = route?.params
 
+  const createData = {
+    userId: userId,
+    name: name,
+    address: address,
+    phoneNumber: phoneNumber,
+    age: age,
+    rollNumber: rollNumber,
+  }
+// console.log(createData)
+  const editData = {
+    userId: params.userId,
+    name: name,
+    address: address,
+    phoneNumber: phoneNumber,
+    age: age,
+    rollNumber: rollNumber,
+  }
 
   useEffect(() => {
     if (params) {
@@ -34,8 +52,6 @@ const ToDoForm = ({ navigation, route }) => {
       setRollNumber(params?.rollNumber)
     }
   }, [params])
-
-  const dispatch = useDispatch()
 
   const handleName = (name) => {
     setName(() => name)
@@ -74,30 +90,10 @@ const ToDoForm = ({ navigation, route }) => {
       setRollNumberError(true)
     } else if (params?.submitType === "create") {
       setRollNumberError(false)
-      dispatch({
-        type: types.CREATE_TODOITEMS,
-        item: {
-          userId: userId,
-          name: name,
-          address: address,
-          phoneNumber: phoneNumber,
-          age: age,
-          rollNumber: rollNumber,
-        }
-      })
+      actions.createToDoItems([createData])
       navigation.navigate(navigationString.HOME)
-    } else if(params?.submitType === "userEdit"){
-      dispatch({
-        type: types.UPDATE_TODOITEMS,
-        item: {
-          userId: params.userId,
-          name: name,
-          address: address,
-          phoneNumber: phoneNumber,
-          age: age,
-          rollNumber: rollNumber,
-        }
-      })
+    } else if (params?.submitType === "userEdit") {
+      actions.updateToDoItems(editData)
       console.log(params?.submitType)
       navigation.navigate(navigationString.HOME)
     }

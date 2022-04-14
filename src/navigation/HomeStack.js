@@ -1,6 +1,6 @@
 import React from 'react'
-import HomeScreen from '../Screens/Home/HomeScreen'
-import ToDoForm from '../Screens/ToDoFormScreen/ToDoForm'
+import { Home } from '../Screens';
+import { ToDoFrom } from '../Screens';
 import navigationString from './navigationString'
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -12,12 +12,12 @@ const HomeStack = () => {
         <Stack.Screen
           options={{ headerShown: false }}
           name={navigationString.HOME}
-          component={HomeScreen}
+          component={Home}
         />
         <Stack.Screen
           options={{ headerShown: false }}
           name={navigationString.ToDoForm}
-          component={ToDoForm}
+          component={ToDoFrom}
         />
       </Stack.Navigator>
   )

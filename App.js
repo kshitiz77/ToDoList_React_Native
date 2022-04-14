@@ -1,24 +1,24 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Routes from './src/navigation/Routes';
 import store from './src/redux/store';
+import dispatch from './src/redux/store'
+import actions from './src/redux/actions';
 import { Provider } from 'react-redux';
+import { getToDoDetails } from './src/utils/utils';
 
 const App = () => {
 
-  function getAppData() {
-    return new Promise((resolve, reject) => {
-      AsyncStorage.getItem('toDoDetails').then(data => {
-        resolve(JSON.parse(data));
-        console.log(data)
-      });
-    });
-  }
-
-  getAppData()
-
+  useEffect(()=>{
+    getToDoDetails().then((res)=>{
+      console.log("store data",res)
+      if(!!res){
+        dispatch(actions.createToDoItems(res))
+      }
+    })
+},[])
   return (
     <SafeAreaProvider >
       <Provider store={store}>

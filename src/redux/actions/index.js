@@ -1,6 +1,6 @@
 import * as auth from './auth' 
-import * as todoItems from './todoItems'
+import * as todoActions from './todoActions'
 export default {
     ...auth,
-    ...todoItems
+    ...todoActions
 }
