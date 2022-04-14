@@ -1,5 +1,23 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// set user details function
+export const setUserData = (data) =>{
+  data = JSON.stringify(data);
+  return AsyncStorage.setItem('userData', data);
+}
+
+// get user details function
+export const getUserData = async () =>{
+  try {
+    const userData = await AsyncStorage.getItem('userData')
+    return userData != null ? JSON.parse(userData) : null;
+  } catch (e) {
+    console.log("user_data get error")
+  }
+}
+
+
+// set userTodolist details Function
 export const setToDoDetails = async (value) => {
   try {
     const jsonValue = JSON.stringify(value)
@@ -9,6 +27,8 @@ export const setToDoDetails = async (value) => {
     console.log("add_data store error")
   }
 }
+
+// get userTodolist details Function
 export const getToDoDetails = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('toDoDetails')
@@ -17,4 +37,6 @@ export const getToDoDetails = async () => {
     console.log("add_data get error")
   }
 }
+
+
 

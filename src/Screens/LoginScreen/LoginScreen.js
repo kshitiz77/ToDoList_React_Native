@@ -4,7 +4,7 @@ import styles from './styles';
 import commonStyles from '../../styles/commonStyles';
 import navigationString from '../../navigation/navigationString';
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/actions/auth'
+import actions from '../../redux/actions';
 import CommonTextInput from '../../component/common/CommonTextInput';
 
 const LoginScreen = ({naigation}) => {
@@ -14,6 +14,10 @@ const LoginScreen = ({naigation}) => {
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
 
+    const userData = {
+        email: email,
+        password : password
+    }
     const handleEmail = (email) => {
         setEmail(() => email)
     }
@@ -35,7 +39,7 @@ const LoginScreen = ({naigation}) => {
         } else {
             setPasswordError(false)
             console.log(email, password)
-            dispatch(login())
+            actions.login(userData)
         }
     }
     return (

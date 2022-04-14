@@ -7,17 +7,27 @@ import store from './src/redux/store';
 import dispatch from './src/redux/store'
 import actions from './src/redux/actions';
 import { Provider } from 'react-redux';
-import { getToDoDetails } from './src/utils/utils';
+import { getToDoDetails , getUserData} from './src/utils/utils';
 
 const App = () => {
 
   useEffect(()=>{
+
+    getUserData().then((res)=>{
+      console.log("store data",res)
+      if(!!res){
+        dispatch(actions.login(res))
+      }
+    })
+
     getToDoDetails().then((res)=>{
       console.log("store data",res)
       if(!!res){
         dispatch(actions.createToDoItems(res))
       }
     })
+
+
 },[])
   return (
     <SafeAreaProvider >

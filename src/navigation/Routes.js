@@ -4,12 +4,12 @@ import { createStackNavigator } from '@react-navigation/stack'
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 import { useSelector } from 'react-redux';
-import userStatus from '../redux/reducers/auth';
 
 const Stack = createStackNavigator();
 
 const Routes = () => {
-    const userStatus = useSelector((state) => state.userStatus)
+    const userStatus = useSelector((state) => state.userStatus.userData)
+    console.log(userStatus)
   return (
    <NavigationContainer>
        <Stack.Navigator>

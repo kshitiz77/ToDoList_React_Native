@@ -19,10 +19,28 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         fontWeight: '500'
       },
+      logoutBtnContainer:{
+        position:'absolute',
+        left: 0,
+        bottom: 0,
+      },
+      logoutTaskBtn:{
+        backgroundColor:colors.blue,
+        borderRadius:8,
+        paddingVertical:5,
+        paddingHorizontal:15,
+        marginBottom:15,
+        marginLeft:15
+      },
       addMoreTaskBtnContainer: {
         position: 'absolute',
         right: 0,
         bottom: 0,
+      },
+      logoutBtnText:{
+        fontSize:22,
+        color:colors.white,
+        fontWeight:'600'
       },
       addMoreTaskBtn: {
         backgroundColor: colors.blue,

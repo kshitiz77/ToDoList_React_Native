@@ -4,7 +4,7 @@ import styles from './styles';
 import commonStyles from '../../styles/commonStyles';
 import navigationString from '../../navigation/navigationString';
 import { useSelector } from 'react-redux';
-import { getToDoDetails, removeToDoDetails } from '../../utils/utils';
+import { getToDoDetails } from '../../utils/utils';
 import types from '../../redux/types';
 import imagesPath from '../../constants/imagesPath'
 import actions from '../../redux/actions';
@@ -77,8 +77,12 @@ console.log(todoListDetails)
         </TouchableOpacity> : null
         }
       </View>
-
-
+        <View style={styles.logoutBtnContainer}>
+          <TouchableOpacity style={styles.logoutTaskBtn} onPress={actions.logout}>
+            <Text style={styles.logoutBtnText}>Logout</Text>
+          </TouchableOpacity>
+        </View> 
+        
       {todoListDetails.length > 0 ?
         <View style={styles.addMoreTaskBtnContainer}>
           <TouchableOpacity style={styles.addMoreTaskBtn} onPress={handleSubmitBtn}>
