@@ -1,5 +1,5 @@
 import types from "../types";
-import { setUserData, removeUserData } from "../../utils/utils";
+import { setUserData, removeUserData, getUserData } from "../../utils/utils";
 
 
 const initialState = {
@@ -10,16 +10,17 @@ const userStatus = (state = initialState, action) => {
     console.log(action.payload)
     switch (action.type) {
         case types.LOGIN:
-            let newArr = action.payload;
-            setUserData(newArr).then((val) => {
-                console.log("my store data", val)
-            })
-            return {
-                ...state.userData,
-                userData: newArr
+            let data = action.payload;
+            setUserData(data)
+            return { ...state.userData,
+                userData: data
             }
         case types.USER_LOGOUT:
             removeUserData();
+            getUserData().then((res)=>{
+                console.log("user Status",res)
+                return {...state.userData,userData:res}
+            })
         return {...state.userData,
             userData:undefined
         }

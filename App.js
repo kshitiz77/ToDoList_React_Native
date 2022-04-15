@@ -15,9 +15,7 @@ const App = () => {
 
     getUserData().then((res)=>{
       console.log("store data",res)
-      if(res){
-        dispatch(actions.login(res))
-      }
+        actions.login(res)
     })
 
     getToDoDetails().then((res)=>{

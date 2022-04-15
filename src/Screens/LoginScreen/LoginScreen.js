@@ -39,7 +39,7 @@ const LoginScreen = ({naigation}) => {
         } else {
             setPasswordError(false)
             console.log(email, password)
-            actions.login(userData)
+            actions.login([userData])
         }
     }
     return (
