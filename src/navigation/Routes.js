@@ -13,7 +13,7 @@ const Routes = () => {
   return (
    <NavigationContainer>
        <Stack.Navigator>
-       {userStatus != null ? MainStack(Stack) : AuthStack(Stack)}
+       {userStatus != null ?  MainStack(Stack) : AuthStack(Stack)}
        </Stack.Navigator>
    </NavigationContainer>
   )
