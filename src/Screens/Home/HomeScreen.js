@@ -10,11 +10,11 @@ import imagesPath from '../../constants/imagesPath'
 import actions from '../../redux/actions';
 
 const HomeScreen = ({ navigation }) => {
-  const todoListDetails = useSelector((state) => state.todoItemsFun.todoItems)
+  const todoListDetails = useSelector((state) => state?.todoItemsFun?.todoItems)
 
 console.log(todoListDetails)
   const handleSubmitBtn = () => {
-    navigation.navigate(navigationString.ToDoForm, {
+    navigation.navigate(navigationString?.ToDoForm, {
       submitType: "create"
     })
   }
@@ -25,12 +25,12 @@ console.log(todoListDetails)
   const handleEditDetails = (e, items) => {
     console.log(items.userId)
     navigation.navigate(navigationString.ToDoForm, {
-      userId: items.userId,
-      name: items.name,
-      address: items.address,
-      phoneNumber: items.address,
-      age: items.age,
-      rollNumber: items.rollNumber,
+      userId: items?.userId,
+      name: items?.name,
+      address: items?.address,
+      phoneNumber: items?.address,
+      age: items?.age,
+      rollNumber: items?.rollNumber,
       submitType: 'userEdit'
     });
   }

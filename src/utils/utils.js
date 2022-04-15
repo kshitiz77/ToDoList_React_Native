@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // set user details function
 export const setUserData = (data) =>{
+  console.log(data)
   data = JSON.stringify(data);
   return AsyncStorage.setItem('userData', data);
 }
