@@ -21,7 +21,7 @@ const App = () => {
     getToDoDetails().then((res)=>{
       console.log("store data",res)
       if(!!res){
-        dispatch(actions.createToDoItems(res))
+        actions.createToDoItems(res)
       }
     })
 

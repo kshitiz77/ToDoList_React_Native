@@ -1,22 +1,23 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // set user details function
-export const setUserData = (data) =>{
+export const setUserData = (data) => {
   console.log(data)
   data = JSON.stringify(data);
   return AsyncStorage.setItem('userData', data);
 }
 
 // remove user details function
-export const removeUserData = async (data) =>{
+export const removeUserData = async (data) => {
   try {
     await AsyncStorage.removeItem('userData')
-} catch (error) {
-  console.log(error)
+  } catch (error) {
+    console.log(error)
+  }
 }
-}
+
 // get user details function
-export const getUserData = async () =>{
+export const getUserData = async () => {
   try {
     const userData = await AsyncStorage.getItem('userData')
     return userData != null ? JSON.parse(userData) : null;

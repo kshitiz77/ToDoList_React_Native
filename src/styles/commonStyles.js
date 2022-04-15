@@ -1,6 +1,16 @@
 import { Dimensions, StyleSheet } from 'react-native'
 import colors from './colors';
-const width = Dimensions.get('window').width;
+import {scale,
+  verticalScale,
+  textScale,
+  moderateScale,
+  moderateScaleVertical,
+  width,
+  height,
+  sliderWidth,
+  itemWidth,
+  StatusBarHeight,
+  StatusBarHeightSecond,} from './responsiveSize'
 
 const commonStyles = StyleSheet.create({
   screenContainer: {
@@ -15,9 +25,9 @@ const commonStyles = StyleSheet.create({
   inputField: {
     backgroundColor: colors.white,
     borderRadius: 8,
-    fontSize: 16,
+    fontSize: textScale(15),
     fontWeight: '600',
-    marginVertical: 8,
+    marginVertical: moderateScaleVertical(8),
     textAlign:'left',
   },
   inputFieldError:{
@@ -27,12 +37,12 @@ const commonStyles = StyleSheet.create({
     backgroundColor: colors.blue,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: moderateScaleVertical(12),
     borderRadius: 8,
   },
   btn: {
     color: colors.white,
-    fontSize: 16,
+    fontSize: textScale(18),
     fontWeight: '600',
     width: width / 1.5,
     textAlign: 'center'

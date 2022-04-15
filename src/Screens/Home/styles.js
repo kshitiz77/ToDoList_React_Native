@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native'
 
 import colors from '../../styles/colors';
 
-const width = Dimensions.get('window').width;
+import {width,moderateScale, textScale, moderateScaleVertical} from '../../styles/responsiveSize'
 
 const styles = StyleSheet.create({
     todoListContainer: {
@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
         borderRadius:8,
         backgroundColor: colors.greyColor4,
         flexDirection:'row',
-        margin:5,
+        margin:moderateScale(10),
       },
       todoListText: {
         color: colors.white,
-        fontSize: 20,
-        marginVertical: 8,
+        fontSize: textScale(20),
+        marginVertical: moderateScaleVertical(8),
         fontWeight: '500'
       },
       logoutBtnContainer:{
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
       logoutTaskBtn:{
         backgroundColor:colors.blue,
         borderRadius:8,
-        paddingVertical:5,
-        paddingHorizontal:15,
-        marginBottom:15,
-        marginLeft:15
+        paddingVertical:moderateScaleVertical(5),
+        paddingHorizontal:moderateScaleVertical(15),
+        marginBottom:moderateScale(10),
+        marginLeft:moderateScale(15)
       },
       addMoreTaskBtnContainer: {
         position: 'absolute',
@@ -46,23 +46,23 @@ const styles = StyleSheet.create({
         backgroundColor: colors.blue,
         alignItems: 'center',
         borderRadius: 50,
-        marginBottom: 20,
-        marginRight: 20,
+        marginBottom: moderateScale(15),
+        marginRight: moderateScale(15),
         width: 50,
         height: 50,
         justifyContent: 'center'
       },
       addMoreTaskBtnText: {
         color: '#fff',
-        fontSize: 30,
+        fontSize: textScale(35),
       },
       todoList:{
     width:width/1.5
       },
       cardDetailsIcons:{
-        width: 50,
-        height:50,
-        marginVertical:10
+        width: 35,
+        height:35,
+        marginVertical:moderateScale(10)
       }
 }) 
 

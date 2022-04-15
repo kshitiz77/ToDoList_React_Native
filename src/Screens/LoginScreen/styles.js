@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const width = Dimensions.get('window').width;
+import {width} from '../../styles/responsiveSize'
 
 const styles = StyleSheet.create({
     loginScreenBodyContainer: {
