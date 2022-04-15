@@ -15,7 +15,7 @@ const App = () => {
 
     getUserData().then((res)=>{
       console.log("store data",res)
-      if(!!res){
+      if(res){
         dispatch(actions.login(res))
       }
     })

@@ -1,5 +1,5 @@
 import types from "../types";
-import { setUserData } from "../../utils/utils";
+import { setUserData, removeUserData } from "../../utils/utils";
 
 
 const initialState = {
@@ -19,13 +19,10 @@ const userStatus = (state = initialState, action) => {
                 userData: newArr
             }
         case types.USER_LOGOUT:
-            let newUserData = { ...state.userData }
-            newUserData = undefined;
-            // delete newUserData;
-            setUserData(newUserData)
-            return { ...state.userData, 
-                userData: newUserData 
-            };
+            removeUserData();
+        return {...state.userData,
+            userData:undefined
+        }
         default: return state;
     }
 }

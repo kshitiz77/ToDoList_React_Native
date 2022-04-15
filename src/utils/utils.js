@@ -7,6 +7,14 @@ export const setUserData = (data) =>{
   return AsyncStorage.setItem('userData', data);
 }
 
+// remove user details function
+export const removeUserData = async (data) =>{
+  try {
+    await AsyncStorage.removeItem('userData')
+} catch (error) {
+  console.log(error)
+}
+}
 // get user details function
 export const getUserData = async () =>{
   try {
